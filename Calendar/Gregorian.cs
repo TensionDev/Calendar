@@ -111,34 +111,7 @@ namespace TensionDev.Calendar
         {
             DateTime dateTime = new DateTime(year, month, 1, 0, 0, 0, DateTimeKind.Local);
 
-            switch (weekOfTheMonth)
-            {
-                case WeekOfTheMonth.First:
-                    break;
-                case WeekOfTheMonth.Second:
-                    dateTime = dateTime.AddDays(7);
-                    break;
-                case WeekOfTheMonth.Third:
-                    dateTime = dateTime.AddDays(14);
-                    break;
-                case WeekOfTheMonth.Fourth:
-                    dateTime = dateTime.AddDays(21);
-                    break;
-                case WeekOfTheMonth.Last:
-                    dateTime = dateTime.AddDays(28);
-                    break;
-            }
-
-            int difference = (dayOfWeek - dateTime.DayOfWeek + 7) % 7;
-
-            dateTime = dateTime.AddDays(difference);
-
-            if (dateTime.Month != month)
-            {
-                dateTime = dateTime.AddDays(-7);
-            }
-
-            return dateTime;
+            return GetDayOfTheMonthInvariant(dateTime, weekOfTheMonth, dayOfWeek);
         }
 
         /// <summary>
@@ -167,6 +140,13 @@ namespace TensionDev.Calendar
         public static DateTime GetDayOfTheMonthUTC(int year, int month, WeekOfTheMonth weekOfTheMonth, DayOfWeek dayOfWeek)
         {
             DateTime dateTime = new DateTime(year, month, 1, 0, 0, 0, DateTimeKind.Utc);
+
+            return GetDayOfTheMonthInvariant(dateTime, weekOfTheMonth, dayOfWeek);
+        }
+
+        private static DateTime GetDayOfTheMonthInvariant(DateTime dateTime, WeekOfTheMonth weekOfTheMonth, DayOfWeek dayOfWeek)
+        {
+            int month = dateTime.Month;
 
             switch (weekOfTheMonth)
             {

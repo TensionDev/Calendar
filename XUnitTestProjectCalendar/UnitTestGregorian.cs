@@ -23,8 +23,8 @@ namespace XUnitTestProjectCalendar
         [Fact]
         public void TestFirstDayOfTheMonthUTC()
         {
-            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            DateTime expected = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            DateTime dateTime = DateTime.UnixEpoch;
+            DateTime expected = DateTime.UnixEpoch;
 
             DateTime actual = Gregorian.FirstDayOfTheMonthUTC(dateTime);
 
@@ -47,7 +47,7 @@ namespace XUnitTestProjectCalendar
         [Fact]
         public void TestLastDayOfTheMonthUTC()
         {
-            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            DateTime dateTime = DateTime.UnixEpoch;
             DateTime expected = new DateTime(1970, 1, 31, 0, 0, 0, DateTimeKind.Utc);
 
             DateTime actual = Gregorian.LastDayOfTheMonthUTC(dateTime);

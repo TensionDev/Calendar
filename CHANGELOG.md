@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Changed folder structure to match the TensionDev.Calendar namespace.
+
+
 ## [v0.1.1] - 2025-05-15
 [v0.1.1](https://github.com/TensionDev/Calendar/releases/tag/v0.1.1)
 

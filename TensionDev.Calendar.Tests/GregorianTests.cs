@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using TensionDev.Calendar;
 using Xunit;
 
-namespace XUnitTestProjectCalendar
+namespace TensionDev.Calendar.Tests
 {
-    public class UnitTestGregorian : IDisposable
+    public class GregorianTests : IDisposable
     {
         private bool disposedValue;
 

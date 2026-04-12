@@ -8,8 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Added Gregorian GetNextWeeksDayOfTheWeek to return the next week's Day of choosing.
+- Added Gregorian GetPreviousWeeksDayOfTheWeek to return the previous week's Day of choosing.
+
 ### Changed
 - Changed folder structure to match the TensionDev.Calendar namespace.
+- Changed UTC to Utc to match Pascal case.
+
+### Fixed
+- Fixed FirstDayOfTheMonth giving wrong DateTime values.
+- Fixed FirstDayOfTheMonthUtc giving wrong DateTime values.
 
 
 ## [v0.1.1] - 2025-05-15

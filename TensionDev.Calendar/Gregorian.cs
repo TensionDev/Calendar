@@ -40,7 +40,7 @@ namespace TensionDev.Calendar
         public static DateTime FirstDayOfTheMonth(DateTime date)
         {
             DateTime local = date.ToLocalTime().Date;
-            DateTime firstDay = new DateTime(local.Year, local.Month, local.Day, 0, 0, 0, DateTimeKind.Local);
+            DateTime firstDay = new DateTime(local.Year, local.Month, 1, 0, 0, 0, DateTimeKind.Local);
 
             return firstDay;
         }
@@ -50,10 +50,10 @@ namespace TensionDev.Calendar
         /// </summary>
         /// <param name="date">The month to compute. Assumes UTC.</param>
         /// <returns>The first day of the month in UTC time.</returns>
-        public static DateTime FirstDayOfTheMonthUTC(DateTime date)
+        public static DateTime FirstDayOfTheMonthUtc(DateTime date)
         {
             DateTime utc = date.ToUniversalTime().Date;
-            DateTime firstDay = new DateTime(utc.Year, utc.Month, utc.Day, 0, 0, 0, DateTimeKind.Utc);
+            DateTime firstDay = new DateTime(utc.Year, utc.Month, 1, 0, 0, 0, DateTimeKind.Utc);
 
             return firstDay;
         }
@@ -76,7 +76,7 @@ namespace TensionDev.Calendar
         /// </summary>
         /// <param name="date">The month to compute. Assumes UTC.</param>
         /// <returns>The last day of the month in UTC time.</returns>
-        public static DateTime LastDayOfTheMonthUTC(DateTime date)
+        public static DateTime LastDayOfTheMonthUtc(DateTime date)
         {
             DateTime utc = date.ToUniversalTime().Date;
             DateTime lastDay = new DateTime(utc.Year, utc.Month, DateTime.DaysInMonth(utc.Year, utc.Month), 0, 0, 0, DateTimeKind.Utc);
@@ -122,10 +122,10 @@ namespace TensionDev.Calendar
         /// <param name="weekOfTheMonth">Which Week of the Month.</param>
         /// <param name="dayOfWeek">Which Day of the Week.</param>
         /// <returns>The day of the month in UTC time.</returns>
-        public static DateTime GetDayOfTheMonthUTC(DateTime date, WeekOfTheMonth weekOfTheMonth, DayOfWeek dayOfWeek)
+        public static DateTime GetDayOfTheMonthUtc(DateTime date, WeekOfTheMonth weekOfTheMonth, DayOfWeek dayOfWeek)
         {
             DateTime utc = date.ToUniversalTime();
-            return GetDayOfTheMonthUTC(utc.Year, utc.Month, weekOfTheMonth, dayOfWeek);
+            return GetDayOfTheMonthUtc(utc.Year, utc.Month, weekOfTheMonth, dayOfWeek);
         }
 
         /// <summary>
@@ -137,11 +137,39 @@ namespace TensionDev.Calendar
         /// <param name="weekOfTheMonth">Which Week of the Month.</param>
         /// <param name="dayOfWeek">Which Day of the Week.</param>
         /// <returns>The day of the month in UTC time.</returns>
-        public static DateTime GetDayOfTheMonthUTC(int year, int month, WeekOfTheMonth weekOfTheMonth, DayOfWeek dayOfWeek)
+        public static DateTime GetDayOfTheMonthUtc(int year, int month, WeekOfTheMonth weekOfTheMonth, DayOfWeek dayOfWeek)
         {
             DateTime dateTime = new DateTime(year, month, 1, 0, 0, 0, DateTimeKind.Utc);
 
             return GetDayOfTheMonthInvariant(dateTime, weekOfTheMonth, dayOfWeek);
+        }
+
+        /// <summary>
+        /// Returns the next occurrence of a particular day of the week in the next week.
+        /// <br />E.g. Next Sunday, Next Tuesday, etc...
+        /// </summary>
+        /// <param name="date">The reference date.</param>
+        /// <param name="dayOfWeek">The day of the week to find.</param>
+        /// <returns>The next occurrence of the specified day of the week.</returns>
+        public static DateTime GetNextWeeksDayOfTheWeek(DateTime date, DayOfWeek dayOfWeek)
+        {
+            int difference = (dayOfWeek - date.DayOfWeek) + 7;
+
+            return date.AddDays(difference).Date;
+        }
+
+        /// <summary>
+        /// Returns the previous occurrence of a particular day of the week in the previous week.
+        /// <br />E.g. Previous Sunday, Previous Tuesday, etc...
+        /// </summary>
+        /// <param name="date">The reference date.</param>
+        /// <param name="dayOfWeek">The day of the week to find.</param>
+        /// <returns>The previous occurrence of the specified day of the week.</returns>
+        public static DateTime GetPreviousWeeksDayOfTheWeek(DateTime date, DayOfWeek dayOfWeek)
+        {
+            int difference = (date.DayOfWeek - dayOfWeek) + 7;
+
+            return date.AddDays(-difference).Date;
         }
 
         private static DateTime GetDayOfTheMonthInvariant(DateTime dateTime, WeekOfTheMonth weekOfTheMonth, DayOfWeek dayOfWeek)

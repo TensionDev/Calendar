@@ -44,4 +44,4 @@ jobs:
         run: dotnet pack --configuration Release
 
       - name: Push NuGet
-        run: dotnet nuget push "Calendar/bin/Release/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_TOKEN }} --no-symbols --skip-duplicate
+        run: dotnet nuget push "TensionDev.Calendar/bin/Release/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_TOKEN }} --no-symbols --skip-duplicate
